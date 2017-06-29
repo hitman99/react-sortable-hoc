@@ -71,6 +71,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
       onSortStart: PropTypes.func,
       onSortMove: PropTypes.func,
       onSortEnd: PropTypes.func,
+      onClone: PropTypes.func,
       shouldCancelStart: PropTypes.func,
       pressDelay: PropTypes.number,
       useDragHandle: PropTypes.bool,
@@ -238,6 +239,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
           helperClass,
           hideSortableGhost,
           onSortStart,
+          onClone,
           useWindowAsScrollContainer,
         } = this.props;
         const {node, collection} = active;
@@ -272,7 +274,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
         };
 
         const fields = node.querySelectorAll('input, textarea, select');
-        const clonedNode = node.cloneNode(true);
+        const clonedNode = (onClone ? onClone(node.cloneNode(true)) : node.cloneNode(true));
         const clonedFields = [
           ...clonedNode.querySelectorAll('input, textarea, select'),
         ]; // Convert NodeList to Array

@@ -1,5 +1,8 @@
 Changelog
 ------------
+### 0.6.4
+Added onClone event handler for cloned DOM node modification before appending to HTML Body
+
 ### 0.6.3
 Fixes issues caused by a disabled SortableElement being moved when `distance` is set to a value other than `0`
 
